@@ -8,6 +8,8 @@
     Set com (simbolo diferente) e (quantidade diferente)
 */
 
+int configuracoes[][2] = {{1, 1}, {1, 0}, {0, 1}, {0, 0}};
+
 int * copiar(int *vetor) {
     // printf("COPIAR\n");
     int *copia = (int *) calloc(3, sizeof(int));
@@ -81,8 +83,12 @@ int set(int mesmaFigura, int mesmaQtd, int *t, int *q, int *c) {
     return 0;
 }
 
+int qtdCartas(int *t, int *q, int *c) {
+    return t[0] + t[1] + t[2] + q[0] + q[1] + q[2] + c[0] + c[1] + c[2];
+}
+
 int temSet(int *t, int *q, int *c) {
-    // printf("TEM SET\n");
+    if (qtdCartas(t, q, c) <3 ) { return 0; }
     return set(1, 1, copiar(t), copiar(q), copiar(c)) ||
            set(1, 0, copiar(t), copiar(q), copiar(c)) ||
            set(0, 1, copiar(t), copiar(q), copiar(c)) ||
@@ -123,19 +129,43 @@ void confMaiorQtdSets(int *t, int *q, int *c, int *mesmaFigura, int *mesmaQtd) {
     qtdDifDif >= qtdDifMesma) { *mesmaFigura = 0; *mesmaQtd = 0; return; }
 }
 
+int maiorQtdSetsRecursivamente(int indiceConfiguracao, int *t, int *q, int *c, int qtdSets) {
+    // printf("indice: %d, qtdSets: %d\n", indiceConfiguracao, qtdSets);
+    // printf("T: [ %d %d %d ]\n", t[0], t[1], t[2]);
+    // printf("Q: [ %d %d %d ]\n", q[0], q[1], q[2]);
+    // printf("C: [ %d %d %d ]\n", c[0], c[1], c[2]);
+    if (indiceConfiguracao > 3) { return qtdSets; }
+    if (set(configuracoes[indiceConfiguracao][0],
+            configuracoes[indiceConfiguracao][1],
+            t, q, c)) {
+        if (temSet(t, q, c)) {
+            int outraQtd = maiorQtdSetsRecursivamente(0, copiar(t), copiar(q), copiar(c), qtdSets + 1);
+            return outraQtd > qtdSets ? outraQtd : qtdSets;
+        } else {
+            return qtdSets + 1;
+        }
+    } else {
+        if (temSet(t, q, c) && indiceConfiguracao < 3) {
+            return maiorQtdSetsRecursivamente(indiceConfiguracao + 1, copiar(t), copiar(q), copiar(c), qtdSets);
+        } else {
+            return qtdSets;
+        }
+    }
+}
+
 void calcularMaiorQtdDeSets(int *t, int *q, int *c) {
     // printf("CALCULAR MAIOR QTD DE SETS\n");
-    int qtdSets = 0;
+    // int qtdSets = 0;
     // printf("\nT: [ %d %d %d ]\n", t[0], t[1], t[2]);
     // printf("Q: [ %d %d %d ]\n", q[0], q[1], q[2]);
     // printf("C: [ %d %d %d ]\n", c[0], c[1], c[2]);
-    while (temSet(copiar(t), copiar(q), copiar(c))) {
-        int mesmaFigura;
-        int mesmaQtd;
-        confMaiorQtdSets(copiar(t), copiar(q), copiar(c), &mesmaFigura, &mesmaQtd);
-        while(set(mesmaFigura, mesmaQtd, t, q, c)) { qtdSets++; }
-    }
-    printf("%d\n", qtdSets);
+    // while (temSet(copiar(t), copiar(q), copiar(c))) {
+    //     int mesmaFigura;
+    //     int mesmaQtd;
+    //     confMaiorQtdSets(copiar(t), copiar(q), copiar(c), &mesmaFigura, &mesmaQtd);
+    //     while(set(mesmaFigura, mesmaQtd, t, q, c)) { qtdSets++; }
+    // }
+    printf("%d\n", maiorQtdSetsRecursivamente(0, t, q, c, 0));
 }
 
 int main() {
