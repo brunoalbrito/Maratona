@@ -134,23 +134,31 @@ int maiorQtdSetsRecursivamente(int indiceConfiguracao, int *t, int *q, int *c, i
     // printf("T: [ %d %d %d ]\n", t[0], t[1], t[2]);
     // printf("Q: [ %d %d %d ]\n", q[0], q[1], q[2]);
     // printf("C: [ %d %d %d ]\n", c[0], c[1], c[2]);
-    if (indiceConfiguracao > 3) { return qtdSets; }
-    if (set(configuracoes[indiceConfiguracao][0],
-            configuracoes[indiceConfiguracao][1],
-            t, q, c)) {
-        if (temSet(t, q, c)) {
-            int outraQtd = maiorQtdSetsRecursivamente(0, copiar(t), copiar(q), copiar(c), qtdSets + 1);
-            return outraQtd > qtdSets ? outraQtd : qtdSets;
-        } else {
-            return qtdSets + 1;
-        }
-    } else {
-        if (temSet(t, q, c) && indiceConfiguracao < 3) {
-            return maiorQtdSetsRecursivamente(indiceConfiguracao + 1, copiar(t), copiar(q), copiar(c), qtdSets);
-        } else {
-            return qtdSets;
+    int mesmaFigura = configuracoes[indiceConfiguracao][0];
+    int mesmaQtd = configuracoes[indiceConfiguracao][1];
+    if (set(mesmaFigura, mesmaQtd, t, q, c)) {
+        qtdSets++;
+    } else { return qtdSets; }
+    int i;
+    for (i = 0; i < 4; i++) {
+        mesmaFigura = configuracoes[i][0];
+        mesmaQtd = configuracoes[i][1];
+        if (set(mesmaFigura, mesmaQtd, copiar(t), copiar(q), copiar(c))) {
+            int qtd = maiorQtdSetsRecursivamente(i, t, q, c, qtdSets);
+            if (qtd > qtdSets) { qtdSets = qtd; }
         }
     }
+    return qtdSets;
+}
+
+int maiorQtdSets(int *t, int *q, int *c) {
+    int maiorQtdSets, qtd, i;
+    maiorQtdSets = 0;
+    for (i = 0; i < 4; i++) {
+        qtd = maiorQtdSetsRecursivamente(i, copiar(t), copiar(q), copiar(c), 0);
+        if (qtd > maiorQtdSets) { maiorQtdSets = qtd; }
+    }
+    return maiorQtdSets;
 }
 
 void calcularMaiorQtdDeSets(int *t, int *q, int *c) {
@@ -165,7 +173,7 @@ void calcularMaiorQtdDeSets(int *t, int *q, int *c) {
     //     confMaiorQtdSets(copiar(t), copiar(q), copiar(c), &mesmaFigura, &mesmaQtd);
     //     while(set(mesmaFigura, mesmaQtd, t, q, c)) { qtdSets++; }
     // }
-    printf("%d\n", maiorQtdSetsRecursivamente(0, t, q, c, 0));
+    printf("%d\n", maiorQtdSets(t, q, c));
 }
 
 int main() {
