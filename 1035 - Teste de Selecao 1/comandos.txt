@@ -1,0 +1,105 @@
+    1  cd src/
+    2  javac br\com\mack\principal\*.java
+    3  cd /src
+    4  javac br\com\mack\principal\*.java
+    5  cd src
+    6  javac br/com/mack/principal/*.java
+    7  read year
+    8  cd src
+    9  javac br/com/mack/principal/*.java
+   10  read year
+   11  cd src
+   12  java br.com.mack.principal.Principal -s 0 03:00:00
+   13  read oi
+   14  cd src
+   15  java br.com.mack.principal.Principal -m 03:03:00
+   16  read oi
+   17  cd src
+   18  java br.com.mack.principal.Principal -s 0 03:00:00
+   19  read oi
+   20  git clone https://github.com/RabahZeineddine/MiniAlg-Compiladores.git
+   21  exit
+   22  git status
+   23  git add .
+   24  git commit -m "Adicionando Idade em Dias"
+   25  git push
+   26  exit
+   27  git pull
+   28  git status
+   29  git add .
+   30  git commit -m "Adicionando 1087- Dama"
+   31  git push
+   32  exit
+   33  python criptografia < entrada.txt 
+   34  python criptografia < entrada.txt 
+   35  python criptografia.py < entrada.txt 
+   36  clear
+   37  python criptografia.py < entrada.txt 
+   38  python criptografia.py < entrada.txt 
+   39  python criptografia.py < entrada.txt 
+   40  python criptografia.py < entrada.txt 
+   41  python criptografia.py < entrada.txt 
+   42  clear
+   43  python criptografia.py < entrada.txt 
+   44  clear
+   45  python criptografia.py < entrada.txt 
+   46  python criptografia.py < entrada.txt 
+   47  clear
+   48  python criptografia.py < entrada.txt 
+   49  clear
+   50  python criptografia.py < entrada.txt 
+   51  python criptografia.py < entrada.txt 
+   52  clear
+   53  python criptografia.py < entrada.txt 
+   54  clear
+   55  python criptografia.py < entrada.txt 
+   56  python criptografia.py < entrada.txt 
+   57  clear
+   58  python criptografia.py < entrada.txt 
+   59  clear
+   60  python criptografia.py < entrada.txt 
+   61  python criptografia.py < entrada.txt 
+   62  python criptografia.py < entrada.txt 
+   63  python criptografia.py < entrada.txt 
+   64  clear
+   65  python criptografia.py < entrada.txt 
+   66  python criptografia.py < entrada.txt 
+   67  python criptografia.py < entrada.txt 
+   68  clear
+   69  python criptografia.py < entrada.txt 
+   70  python criptografia.py < entrada.txt 
+   71  python criptografia.py < entrada.txt 
+   72  python criptografia.py < entrada.txt 
+   73  python criptografia.py < entrada.txt 
+   74  python criptografia.py < entrada.txt 
+   75  clear
+   76  python criptografia.py < entrada.txt 
+   77  clear
+   78  python criptografia.py < entrada.txt 
+   79  clear
+   80  python criptografia.py < entrada.txt 
+   81  python criptografia.py < entrada.txt 
+   82  clear
+   83  python criptografia.py < entrada.txt 
+   84  python criptografia.py < entrada.txt 
+   85  python criptografia.py < entrada.txt 
+   86  clear
+   87  python criptografia.py < entrada.txt 
+   88  clear
+   89  python criptografia.py < entrada.txt 
+   90  python criptografia.py < entrada.txt 
+   91  exit
+   92  gcc -o testeselecao.c testeselecao
+   93  gcc -o testeselecao.c testeselecao
+   94  gcc 
+   95  gcc -o testeselecao.c testeselecao
+   96  gcc -c testeselecao.c
+   97  gcc -c testeselecao.c
+   98  gcc -o testeselecao.o testeselecao.exe
+   99  gcc testeselecao.o -o  testeselecao.exe
+  100  ls
+  101  testeselecao.exe < entrada.txt
+  102  testeselecao < entrada.txt
+  103  testeselecao.exe
+  104  history
+  105  history > comandos.txt
