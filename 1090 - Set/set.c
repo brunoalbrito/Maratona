@@ -134,11 +134,12 @@ int maiorQtdSetsRecursivamente(int indiceConfiguracao, int *t, int *q, int *c, i
     // printf("T: [ %d %d %d ]\n", t[0], t[1], t[2]);
     // printf("Q: [ %d %d %d ]\n", q[0], q[1], q[2]);
     // printf("C: [ %d %d %d ]\n", c[0], c[1], c[2]);
+    if (indiceConfiguracao > 3) { return qtdSets; }
     int mesmaFigura = configuracoes[indiceConfiguracao][0];
     int mesmaQtd = configuracoes[indiceConfiguracao][1];
     if (set(mesmaFigura, mesmaQtd, t, q, c)) {
         qtdSets++;
-    } else { return qtdSets; }
+    } else { return maiorQtdSetsRecursivamente(indiceConfiguracao+1, t, q, c, qtdSets); }
     int i;
     for (i = 0; i < 4; i++) {
         mesmaFigura = configuracoes[i][0];
